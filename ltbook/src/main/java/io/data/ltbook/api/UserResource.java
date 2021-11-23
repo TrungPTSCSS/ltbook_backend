@@ -5,11 +5,14 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.data.ltbook.domain.Book;
+import io.data.ltbook.domain.ResponseObject;
 import io.data.ltbook.domain.Role;
 import io.data.ltbook.domain.User;
 import io.data.ltbook.service.UserService;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -31,6 +34,36 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 public class UserResource {
     private final UserService userService;
 
+    @GetMapping("/user/info")
+    ResponseEntity<ResponseObject> infoUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String authorizationHeader = request.getHeader(AUTHORIZATION);
+        if(authorizationHeader != null && authorizationHeader.startsWith("Bearer ")){
+            try {
+                String refresh_token = authorizationHeader.substring("Bearer ".length());
+                Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
+                JWTVerifier verifier = JWT.require(algorithm).build();
+                DecodedJWT decodedJWT = verifier.verify(refresh_token);
+                String username = decodedJWT.getSubject();
+                User user = userService.getUser(username);
+                return ResponseEntity.status(HttpStatus.OK).body(
+                        new ResponseObject("success", "found information user successfully", user)
+                );
+//                new ObjectMapper().writeValue(response.getOutputStream(),user);
+            }catch (Exception exception){
+//                response.setHeader("error",exception.getMessage());
+//                response.setStatus(FORBIDDEN.value());
+//                    response.sendError();
+//                Map<String,String> error = new HashMap<>();
+//                error.put("error_message",exception.getMessage());
+//                response.setContentType(APPLICATION_JSON_VALUE);
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+                        new ResponseObject("fail", "can't find informationUser","")
+                );
+            }
+        }else {
+            throw new RuntimeException("not found!");
+        }
+    }
     @GetMapping("/users")
     public ResponseEntity<List<User>> getUser(){
         return ResponseEntity.ok().body(userService.getUsers());

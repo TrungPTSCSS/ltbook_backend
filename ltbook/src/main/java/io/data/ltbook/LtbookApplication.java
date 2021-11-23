@@ -1,9 +1,6 @@
 package io.data.ltbook;
 
-import io.data.ltbook.domain.Blog;
-import io.data.ltbook.domain.Book;
-import io.data.ltbook.domain.Role;
-import io.data.ltbook.domain.User;
+import io.data.ltbook.domain.*;
 import io.data.ltbook.service.DatabaseService;
 import io.data.ltbook.service.UserService;
 import org.springframework.boot.CommandLineRunner;
@@ -28,6 +25,10 @@ public class LtbookApplication {
 //	@Bean
 //	CommandLineRunner run(DatabaseService databaseService){
 //		return args -> {
+//			databaseService.initBill(new Bill(null, 6L,"Phạm Thành Trung","0344153437","Hóc Môn","B001",500000.0,"payment"));
+//			databaseService.initProductCart(new ProductCart(null,"B001",10L,"Conan - thám tử lừng danh","avtBook",10,5,50000.0,500000.0));
+//			databaseService.initProductCart(new ProductCart(null,"B001",10L,"Conan - thám tử lừng danh","avtBook",2,5,50000.0,100000.0));
+
 //			databaseService.initBook(new Book(null,"Conan - thám tử lừng danh",25.000,5,100,"Tập 100","avtArtist","Oda","21/11/1989","KinhDi","avaiable","Trung","21/11/2021","Trung","21/11/2021"));
 ////			databaseService.initBlog(new Blog(null,"newBlog","đây là blog mới","#new","new","Trung","21/11/2021 10:28:00","Trung","21/11/2021"));
 ////			userService.saveRole(new Role(null,"ROLE_USER"));

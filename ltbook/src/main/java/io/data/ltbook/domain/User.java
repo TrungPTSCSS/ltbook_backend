@@ -23,9 +23,13 @@ public class User {
     private String name;
     private String username;
     private String password;
-//    private String phone;
-//    private String email;
-//    private List<Token> tokens;
+    private String phone;
+    private String status;
+    private String address;
+    private String email;
+
+
+    //    private List<Token> tokens;
     @ManyToMany(fetch = EAGER)
     private final Collection<Role> roles = new ArrayList<>();
 
