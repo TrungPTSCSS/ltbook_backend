@@ -86,7 +86,6 @@ public class UserResource {
         return ResponseEntity.ok().build();
     }
 
-
     @GetMapping("/token/refresh")
     public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String authorizationHeader = request.getHeader(AUTHORIZATION);
