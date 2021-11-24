@@ -27,4 +27,5 @@ public class Blog {
     private String createAt;
     private String updateBy;
     private String updateAt;
+    private String imgUrl;
 }

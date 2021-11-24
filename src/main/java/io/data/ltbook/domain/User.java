@@ -27,7 +27,7 @@ public class User {
     private String status;
     private String address;
     private String email;
-
+    private String avtUrl;
 
     //    private List<Token> tokens;
     @ManyToMany(fetch = EAGER)

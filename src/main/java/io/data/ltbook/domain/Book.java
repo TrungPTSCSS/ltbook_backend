@@ -34,5 +34,5 @@ public class Book {
     private String createAt;
     private String updateBy;
     private String updateAt;
-//    private String imageBook;
+    private String imageBook;
 }
