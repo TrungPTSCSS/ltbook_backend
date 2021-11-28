@@ -42,6 +42,7 @@ public class BlogResource {
                         new ResponseObject("fail", "can't find blog with id =" + id, "")
                 );
     }
+
     @PostMapping("/Create")
     ResponseEntity<ResponseObject> insertBlog(@RequestBody Blog newBlog){
         List<Blog> foundBlog = databaseService.findBlogByTitle(newBlog.getTitle().trim());
@@ -54,6 +55,8 @@ public class BlogResource {
                 new ResponseObject("success", "create new blog successfully", databaseService.initBlog(newBlog))
         );
     }
+
+
     @PutMapping("/Update")
     @ResponseBody
     ResponseEntity<ResponseObject> updateBlog(@RequestBody Blog newBlog, @RequestParam Long id){
@@ -61,6 +64,7 @@ public class BlogResource {
             blog.setTitle(newBlog.getTitle());
             blog.setContent(newBlog.getContent());
             blog.setTags(newBlog.getTags());
+            blog.setImgUrl(newBlog.getImgUrl());
             blog.setStatus(newBlog.getStatus());
             blog.setCreateBy(newBlog.getCreateBy());
             blog.setCreateAt(newBlog.getCreateAt());

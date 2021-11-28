@@ -40,7 +40,7 @@ public class SecurityConfict extends WebSecurityConfigurerAdapter {
                                             "/api/productCart/GetByQuery","/api/productCart/GetByCodeCart",
                 "/api/bill/GetByQuery","/api/bill/GetByIdUser","api/users").permitAll();
         http.authorizeRequests().antMatchers(GET,"/api/user/**").hasAnyAuthority("ROLE_USER");
-        http.authorizeRequests().antMatchers(POST,"/api/user/save/**","/api/blog/Create","/api/book/Create","/api/productCart/Create","/api/bill/Create").hasAnyAuthority("ROLE_ADMIN");
+        http.authorizeRequests().antMatchers(POST,"/api/user/save/**","/api/blog/Create/","/api/book/Create/","/api/productCart/Create/","/api/bill/Create/").hasAnyAuthority("ROLE_ADMIN");
         http.authorizeRequests().antMatchers(POST,"/api/blog/Update","/api/book/Update","/api/productCart/Update","/api/bill/Update").hasAnyAuthority("ROLE_ADMIN");
         http.authorizeRequests().antMatchers(POST,"/api/blog/Delete","/api/book/Delete").hasAnyAuthority("ROLE_ADMIN");
         http.authorizeRequests().anyRequest().authenticated();
