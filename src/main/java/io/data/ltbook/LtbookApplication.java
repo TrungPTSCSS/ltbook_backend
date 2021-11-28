@@ -21,7 +21,6 @@ public class LtbookApplication {
 	PasswordEncoder passwordEncoder(){
 		return new BCryptPasswordEncoder();
 	}
-
 	@Bean
 	CommandLineRunner run(DatabaseService databaseService){
 		return args -> {

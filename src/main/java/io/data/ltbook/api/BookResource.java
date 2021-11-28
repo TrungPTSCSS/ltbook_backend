@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+
 @RestController
 @RequestMapping("/api/book")
 @RequiredArgsConstructor
-@Slf4j
 public class BookResource {
     private final DatabaseService databaseService;
 
@@ -50,6 +50,7 @@ public class BookResource {
                         new ResponseObject("fail", "can't find book follow type", "")
                 );
     }
+
     @PostMapping("/Create")
     ResponseEntity<ResponseObject> insertBook(@RequestBody Book newBook){
 //        List<Book> foundBook = repository.findByName(newBook.getName().trim());
